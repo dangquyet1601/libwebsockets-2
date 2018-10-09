@@ -69,8 +69,8 @@ lws_client_connect_2(struct lws *wsi)
 	if (LWS_IPV6_ENABLED(wsi->vhost)) {
 		memset(&hints, 0, sizeof(struct addrinfo));
 #if !defined(__ANDROID__)
-		hints.ai_family = AF_INET6;
-		hints.ai_flags = AI_V4MAPPED;
+//        hints.ai_family = AF_INET6;
+//        hints.ai_flags = AI_V4MAPPED;
 #endif
 		n = getaddrinfo(ads, NULL, &hints, &result);
 		if (n) {
@@ -85,7 +85,7 @@ lws_client_connect_2(struct lws *wsi)
 
 		server_addr6.sin6_family = AF_INET6;
 		switch (result->ai_family) {
-#if defined(__ANDROID__)
+//#if defined(__ANDROID__)
 		case AF_INET:
 			/* map IPv4 to IPv6 */
 			bzero((char *)&server_addr6.sin6_addr,
@@ -96,7 +96,7 @@ lws_client_connect_2(struct lws *wsi)
 				&((struct sockaddr_in *)result->ai_addr)->sin_addr,
 							sizeof(struct in_addr));
 			break;
-#endif
+//#endif
 		case AF_INET6:
 			memcpy(&server_addr6.sin6_addr,
 			  &((struct sockaddr_in6 *)result->ai_addr)->sin6_addr,
