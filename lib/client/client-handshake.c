@@ -12,8 +12,8 @@ lws_getaddrinfo46(struct lws *wsi, const char *ads, struct addrinfo **result)
 	if (wsi->ipv6) {
 
 #if !defined(__ANDROID__)
-		hints.ai_family = AF_INET6;
-		hints.ai_flags = AI_V4MAPPED;
+//        hints.ai_family = AF_INET6;
+//        hints.ai_flags = AI_V4MAPPED;
 #endif
 	} else
 #endif
@@ -43,9 +43,9 @@ lws_client_connect_2(struct lws *wsi)
 			LWS_SERVER_OPTION_IPV6_V6ONLY_MODIFY |
 			LWS_SERVER_OPTION_IPV6_V6ONLY_VALUE);
 
-#if defined(__ANDROID__)
+//#if defined(__ANDROID__)
 	ipv6only = 0;
-#endif
+//#endif
 #endif
 
 	lwsl_client("%s\n", __func__);
